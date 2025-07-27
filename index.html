@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image Search</title>
+    <script type="module" crossorigin src="/goit-js-hw-12/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-C3lJ7lpQ.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/vendor-CX4EDM7x.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-anTP-u4J.css">
+  </head>
+  <body>
+    <div id="splash-screen">
+      <span class="loader"></span>
+    </div>
+    <style>
+      #splash-screen {
+        position: fixed;
+        inset: 0;
+        background-color: white;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #ccc;
+        border-top-color: #3f51b5;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <main class="main">
+      <form class="form">
+        <label>
+          <input
+            type="text"
+            name="search-text"
+            placeholder="Search images..."
+            required
+          />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+
+      <span class="loader loader-top is-hidden"></span>
+
+      <ul class="gallery"></ul>
+
+      <button class="load-more is-hidden" type="button">Load more</button>
+      <span class="loader loader-bottom is-hidden"></span>
+    </main>
+  </body>
+</html>
