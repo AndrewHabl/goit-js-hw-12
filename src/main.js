@@ -2,8 +2,10 @@ import { getImagesByQuery } from './js/pixabay-api.js';
 import {
   createGallery,
   clearGallery,
-  showLoader,
-  hideLoader,
+  showLoaderTop,
+  hideLoaderTop,
+  showLoaderBottom,
+  hideLoaderBottom,
   showLoadMoreButton,
   hideLoadMoreButton,
 } from './js/render-functions.js';
@@ -30,16 +32,22 @@ form.addEventListener('submit', async e => {
     return;
   }
 
-  await fetchImages();
+  await fetchImages({ isInitial: true });
 });
 
 loadMoreBtn.addEventListener('click', async () => {
+  hideLoadMoreButton();
   page++;
-  await fetchImages();
+  await fetchImages({ isInitial: false });
 });
 
-async function fetchImages() {
-  showLoader();
+async function fetchImages({ isInitial }) {
+  if (isInitial) {
+    showLoaderTop();
+  } else {
+    showLoaderBottom();
+  }
+
   try {
     const data = await getImagesByQuery(query, page);
 
@@ -68,17 +76,26 @@ async function fetchImages() {
   } catch (error) {
     iziToast.error({ message: 'Failed to fetch images', position: 'topRight' });
   } finally {
-    hideLoader();
+    if (isInitial) {
+      hideLoaderTop();
+    } else {
+      hideLoaderBottom();
+    }
   }
 }
 
 function smoothScroll() {
-  const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
+  const firstCard = document.querySelector('.gallery').firstElementChild;
+  if (!firstCard) return;
+
+  const { height: cardHeight } = firstCard.getBoundingClientRect();
 
   window.scrollBy({
     top: cardHeight * 2,
     behavior: 'smooth',
   });
 }
+window.addEventListener('load', () => {
+  const splash = document.getElementById('splash-screen');
+  if (splash) splash.remove();
+});

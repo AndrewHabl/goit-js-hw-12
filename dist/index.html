@@ -4,9 +4,21 @@
     <meta charset="UTF-8" />
     <title>Image Search</title>
     <script type="module" crossorigin src="/goit-js-hw-12/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-5YrzWRhu.js">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/vendor-CWKLx11g.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-cQmRVedi.css">
+    <link
+      rel="modulepreload"
+      crossorigin
+      href="/goit-js-hw-12/assets/vendor-5YrzWRhu.js"
+    />
+    <link
+      rel="stylesheet"
+      crossorigin
+      href="/goit-js-hw-12/assets/vendor-CWKLx11g.css"
+    />
+    <link
+      rel="stylesheet"
+      crossorigin
+      href="/goit-js-hw-12/assets/index-cQmRVedi.css"
+    />
   </head>
   <body>
     <main class="main">
@@ -22,11 +34,12 @@
         <button type="submit">Search</button>
       </form>
 
-      <span class="loader is-hidden"></span>
-
+      <span class="loader loader-top is-hidden"></span>
       <ul class="gallery"></ul>
-      <button class="load-more is-hidden" type="button">Load more</button>
-      <span class="loader is-hidden"></span>
-    </main>
+      <div class="load-more-wrapper">
+        <button class="load-more is-hidden" type="button">Load more</button>
+        <span class="loader loader-bottom is-hidden"></span>
+      </div>
+    </main>
   </body>
 </html>

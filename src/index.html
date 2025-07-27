@@ -5,6 +5,35 @@
     <title>Image Search</title>
   </head>
   <body>
+    <div id="splash-screen">
+      <span class="loader"></span>
+    </div>
+    <style>
+      #splash-screen {
+        position: fixed;
+        inset: 0;
+        background-color: white;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #ccc;
+        border-top-color: #3f51b5;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
     <main class="main">
       <form class="form">
         <label>
@@ -18,11 +47,12 @@
         <button type="submit">Search</button>
       </form>
 
-      <span class="loader is-hidden"></span>
+      <span class="loader loader-top is-hidden"></span>
 
       <ul class="gallery"></ul>
+
       <button class="load-more is-hidden" type="button">Load more</button>
-      <span class="loader is-hidden"></span>
+      <span class="loader loader-bottom is-hidden"></span>
     </main>
     <script type="module" src="./main.js"></script>
   </body>
