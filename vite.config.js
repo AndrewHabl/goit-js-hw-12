@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { glob } from 'glob';
+import path from 'path';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
@@ -16,7 +16,7 @@ export default defineConfig(({ command }) => {
       outDir: '../dist',
       emptyOutDir: true,
       rollupOptions: {
-        input: glob.sync('src/*.html'),
+        input: path.resolve(__dirname, 'src/index.html'),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) return 'vendor';
@@ -34,9 +34,7 @@ export default defineConfig(({ command }) => {
     plugins: [
       injectHTML(),
       FullReload(['./src/**/*.html']),
-      SortCss({
-        sort: 'mobile-first',
-      }),
+      SortCss({ sort: 'mobile-first' }),
     ],
   };
 });
